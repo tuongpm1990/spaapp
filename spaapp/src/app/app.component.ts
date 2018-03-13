@@ -6,8 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-  helloWorld() {
-    alert('Hello world!');
+
+  constructor() {
   }
 }
