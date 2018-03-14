@@ -1,24 +1,32 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { Injectable } from '@angular/core';
 import {AngularFireAuth} from 'angularfire2/auth';
 
+// //
 import * as firebase from 'firebase/app';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-
+//
+@Injectable()
 export class LoginComponent implements OnInit {
   error: any;
   constructor(public afAuth: AngularFireAuth, private router: Router) {
-    this.afAuth.authState.subscribe(auth => {
-      if (auth) {
-        this.router.navigateByUrl('/members');
-      }
-    });
   }
+  // loginGoogle() {
+  //   const provider = new firebase.auth.GoogleAuthProvider();
+  //   return this.oAuthLogin(provider);
+  // }
+  //
+  // private oAuthLogin(provider) {
+  //   return this.afAuth.auth.signInWithPopup(provider)
+  //     .then((credential) => {
+  //       this.router.navigate(['/members']);
+  //     });
+  // }
   loginFb() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()
     ).then((res) => {
@@ -35,13 +43,8 @@ export class LoginComponent implements OnInit {
       console.log(err);
     });
   }
-  // signInWithFacebook() {
-  //   return this.afAuth.auth.signInWithPopup(
-  //     new firebase.auth.FacebookAuthProvider()
-  //   );
-  // }
-  logout() {
-    this.afAuth.auth.signOut();
+  screen(width) {
+    return ( width < 700 ) ? 'sm' : 'lg';
   }
   ngOnInit() {
   }

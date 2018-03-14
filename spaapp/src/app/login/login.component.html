@@ -1,11 +1,18 @@
 <div class="form-container">
-  <img src="assets/images/lock.svg" id="lock">
+  <!--<img src="assets/images/lock.svg" id="lock">-->
 
   <span class="error" *ngIf="error">{{ error }}</span>
+  <div class="dx-field">
+    <dx-button text="Đăng nhập bằng Facebook" type="default" icon="fa fa-facebook-square" width="400" (onClick)="loginFb()"></dx-button>
+  </div>
+  <div class="dx-field">
+    <dx-button text="Đăng nhập bằng Google" type="danger" icon="fa fa-google" width="400" (onClick)="loginGoogle()"></dx-button>
+  </div>
+  <!--<dx-button text="Đăng nhập bằng Email" type="normal" (onClick)="loginEmail()"></dx-button>-->
+  <!--<button (click)="loginFb()" id="fb">Đăng nhập bằng Facebook</button><br>-->
 
-  <button (click)="loginFb()" id="fb">Login With Facebook</button><br>
-  <button (click)="loginGoogle()" id="google">Login With Google</button>
-  <button routerLink="/login-email" id="email">Email</button>
+  <!--<button (click)="loginGoogle()" id="google">Đăng nhập bằng Google</button>-->
+  <!--<button routerLink="/login-email" id="email">Đăng nhập bằng Email</button>-->
 
-  <a routerLink="/signup" routerLinkActive="active" class="alc">No account? <strong>Create one here</strong></a>
+  <a routerLink="/signup" routerLinkActive="active" class="alc">Bạn chưa có tài khoản? <strong>Tạo account</strong></a>
 </div>

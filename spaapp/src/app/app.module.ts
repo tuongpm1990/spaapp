@@ -8,11 +8,31 @@ import { LoginComponent } from './login/login.component';
 import { EmailComponent } from './email/email.component';
 import { SignupComponent } from './signup/signup.component';
 import { MembersComponent } from './members/members.component';
-
-import { routers } from './app.routers';
+import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
-import { AuthGuard } from './auth.service';
+
+import { DevExtremeModule } from 'devextreme-angular';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {DxSelectBoxModule,
+  DxCheckBoxModule,
+  DxTextBoxModule,
+  DxDateBoxModule,
+  DxButtonModule,
+  DxValidatorModule,
+  DxValidationSummaryModule} from 'devextreme-angular';
+import notify from 'devextreme/ui/notify';
+const router: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'members', component: MembersComponent },
+  { path: 'login-email', component: EmailComponent },
+];
+// export const routers: ModuleWithProviders = RouterModule.forRoot(router);
+
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBpj0-6i9Pd-NKo0Ij6ymZ_LvBmsR_Qgr8',
@@ -27,12 +47,22 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     FormsModule,
+    RouterModule.forRoot(router),
     AngularFireModule.initializeApp(firebaseConfig),
-    routers,
+    HttpClientModule,
     HttpModule,
-    HttpClientModule
+    AngularFireAuthModule,
+    DxButtonModule,
+    DevExtremeModule,
+    DxSelectBoxModule,
+    DxCheckBoxModule,
+    DxTextBoxModule,
+    DxDateBoxModule,
+    DxButtonModule,
+    DxValidatorModule,
+    DxValidationSummaryModule
   ],
-  providers: [AuthGuard],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

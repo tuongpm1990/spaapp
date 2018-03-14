@@ -1,3 +1,55 @@
-<p>
-  signup works!
-</p>
+<div class="form-container">
+  <a routerLink="/login" id="goback">Login</a>
+
+  <h2>Đăng ký tài khoản</h2>
+
+  <span class="error" *ngIf="error" [@fallIn]='state'>{{ error }}</span>
+
+  <!--<form #formData='ngForm' (ngSubmit)="btnSignUp(formData)">-->
+
+    <!--<input type="text" placeholder="Email address.." (ngModel)="email" name="email" class="txt" required>-->
+    <!--<input type="password" placeholder="Password" (ngModel)="password" name="password" class="txt" required>-->
+
+
+    <!--<button type="submit" [disabled]="!formData.valid" class="basic-btn">Create my account</button>-->
+  <!--</form>-->
+
+  <form action="your-action" (submit)="btnSignUp(email,password)">
+    <div class="dx-field">
+      <div class="dx-field-label">Email</div>
+      <div class="dx-field-value">
+        <dx-text-box [(value)]="email">
+          <dx-validator>
+            <dxi-validation-rule [pattern]="emailPat" type="required" message="Thông tin bắt buộc"></dxi-validation-rule>
+          </dx-validator>
+        </dx-text-box>
+      </div>
+    </div>
+    <div class="dx-field">
+      <div class="dx-field-label">Password</div>
+      <div class="dx-field-value">
+        <dx-text-box mode="password" [(value)]="password">
+          <dx-validator>
+            <dxi-validation-rule type="required" message="Thông tin bắt buộc"></dxi-validation-rule>
+            <dxi-validation-rule type="stringLength" message="Mật khẩu ít nhất 6 ký tự" [min]="6"></dxi-validation-rule>
+            <dxi-validation-rule type="stringLength" message="Mật khẩu dài nhất 50 ký tự" [max]="50"></dxi-validation-rule>
+          </dx-validator>
+        </dx-text-box>
+      </div>
+    </div>
+    <div class="dx-field">
+      <div class="dx-field-label">Confirm Password</div>
+      <div class="dx-field-value">
+        <dx-text-box mode="password">
+          <dx-validator>
+            <dxi-validation-rule type="required" message="Thông tin bắt buộc"></dxi-validation-rule>
+            <dxi-validation-rule type="compare" [comparisonTarget]="passwordComparison"
+                                 message="Password and Confirm Password do not match"></dxi-validation-rule>
+
+          </dx-validator>
+        </dx-text-box>
+      </div>
+    </div>
+    <dx-button text="Đăng ký" type="success" [useSubmitBehavior]="true"></dx-button>
+  </form>
+</div>
