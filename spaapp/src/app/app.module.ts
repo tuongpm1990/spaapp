@@ -12,6 +12,7 @@ import { MembersComponent } from './members/members.component';
 import { routers } from './app.routers';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { AuthGuard } from './auth.service';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBpj0-6i9Pd-NKo0Ij6ymZ_LvBmsR_Qgr8',
@@ -31,7 +32,7 @@ export const firebaseConfig = {
     HttpModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
