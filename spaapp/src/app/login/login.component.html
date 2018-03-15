@@ -1,18 +1,49 @@
-<div class="form-container">
+<div class="form-container login-container">
   <!--<img src="assets/images/lock.svg" id="lock">-->
 
   <span class="error" *ngIf="error">{{ error }}</span>
   <div class="dx-field">
-    <dx-button text="Đăng nhập bằng Facebook" type="default" icon="fa fa-facebook-square" width="400" (onClick)="loginFb()"></dx-button>
+  <dx-button text="Đăng nhập bằng Facebook" type="default" icon="fa fa-facebook-square" width="400" (onClick)="loginFb()"></dx-button>
   </div>
   <div class="dx-field">
     <dx-button text="Đăng nhập bằng Google" type="danger" icon="fa fa-google" width="400" (onClick)="loginGoogle()"></dx-button>
   </div>
+  <div class="dx-field">
+    <dx-button text="Đăng nhập bằng Email" type="" icon="fa fa-envelope-o" width="400" (onClick)="btnLogin()"></dx-button>
+  </div>
+  <div class="dx-fieldset" *ngIf="showLoginEmail">
+    <div class="dx-field">
+      <div class="dx-field-label">Email</div>
+      <div class="dx-field-value">
+        <dx-text-box [(value)]="email">
+          <dx-validator>
+            <dxi-validation-rule type="required" message="Thông tin bắt buộc"></dxi-validation-rule>
+          </dx-validator>
+        </dx-text-box>
+      </div>
+    </div>
+    <div class="dx-field">
+      <div class="dx-field-label">Password</div>
+      <div class="dx-field-value">
+        <dx-text-box [(value)]="password">
+          <dx-validator>
+            <dxi-validation-rule type="required" message="Thông tin bắt buộc"></dxi-validation-rule>
+          </dx-validator>
+        </dx-text-box>
+      </div>
+    </div>
+
+      <div class="dx-field">
+        <dx-button class="btn-right" text="Đăng nhập" type="success" [useSubmitBehavior]="true" (onClick)="loginEmail(email, password)"></dx-button>
+      </div>
+
+
+  </div>
+
   <!--<dx-button text="Đăng nhập bằng Email" type="normal" (onClick)="loginEmail()"></dx-button>-->
   <!--<button (click)="loginFb()" id="fb">Đăng nhập bằng Facebook</button><br>-->
 
   <!--<button (click)="loginGoogle()" id="google">Đăng nhập bằng Google</button>-->
   <!--<button routerLink="/login-email" id="email">Đăng nhập bằng Email</button>-->
-
   <a routerLink="/signup" routerLinkActive="active" class="alc">Bạn chưa có tài khoản? <strong>Tạo account</strong></a>
 </div>

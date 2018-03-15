@@ -2,6 +2,9 @@
 /*/deep/ .weather .dx-button-content {*/
   /*width: ;*/
 /*}*/
-.form-container{
+.login-container.form-container{
   top:35%;
+}
+.login-container .dx-field .btn-right {
+  float: right;
 }

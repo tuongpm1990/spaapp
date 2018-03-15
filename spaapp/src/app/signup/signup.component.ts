@@ -14,7 +14,8 @@ if (!/localhost/.test(document.location.host)) {
 export class SignupComponent implements OnInit {
   error: any;
   password = '';
-  emailPat: any = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  email = '';
+  emailPatern: any = /^\w+([-+.'%]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
   constructor(public af: AngularFireAuth, private router: Router) { }
 
   btnSignUp(email, password) {
@@ -30,6 +31,10 @@ export class SignupComponent implements OnInit {
     }).catch((err) => {
       this.error = err;
     });
+  }
+
+  btnBackLogin() {
+    this.router.navigate(['/login']);
   }
   passwordComparison = () => {
     return this.password;

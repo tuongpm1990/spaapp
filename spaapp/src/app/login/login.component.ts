@@ -2,7 +2,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from 'angularfire2/auth';
-
+import notify from 'devextreme/ui/notify';
 // //
 import * as firebase from 'firebase/app';
 @Component({
@@ -11,10 +11,16 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./login.component.css'],
 })
 //
+
+
 @Injectable()
 export class LoginComponent implements OnInit {
   error: any;
+  email = '';
+  password = '';
+  showLoginEmail = false;
   constructor(public afAuth: AngularFireAuth, private router: Router) {
+    this.showLoginEmail = false;
   }
   // loginGoogle() {
   //   const provider = new firebase.auth.GoogleAuthProvider();
@@ -42,6 +48,22 @@ export class LoginComponent implements OnInit {
     }).catch((err) => {
       console.log(err);
     });
+  }
+  loginEmail(email, password) {
+    this.afAuth.auth.signInWithEmailAndPassword(email, password).then((res) => {
+      this.router.navigate(['/members']);
+    }).catch((err) => {
+      notify({
+        message: err,
+        position: {
+          my: 'center top',
+          at: 'center top'
+        }
+      }, 'error', 3000);
+    });
+  }
+  btnLogin() {
+    this.showLoginEmail = true;
   }
   screen(width) {
     return ( width < 700 ) ? 'sm' : 'lg';

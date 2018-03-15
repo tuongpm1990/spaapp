@@ -1,9 +1,10 @@
 <div class="form-container">
-  <a routerLink="/login" id="goback">Login</a>
+  <dx-button text="Login" (onClick)="btnBackLogin()" icon="fa fa-arrow-left"></dx-button>
+
 
   <h2>Đăng ký tài khoản</h2>
 
-  <span class="error" *ngIf="error" [@fallIn]='state'>{{ error }}</span>
+  <!--<span class="error" *ngIf="error" [@fallIn]='state'>{{ error }}</span>-->
 
   <!--<form #formData='ngForm' (ngSubmit)="btnSignUp(formData)">-->
 
@@ -20,7 +21,8 @@
       <div class="dx-field-value">
         <dx-text-box [(value)]="email">
           <dx-validator>
-            <dxi-validation-rule [pattern]="emailPat" type="required" message="Thông tin bắt buộc"></dxi-validation-rule>
+            <dxi-validation-rule [pattern]="emailPatern" type="required" message="Thông tin bắt buộc"></dxi-validation-rule>
+            <dxi-validation-rule [pattern]="emailPatern" type="pattern" message="Sai định dạng email"></dxi-validation-rule>
           </dx-validator>
         </dx-text-box>
       </div>
