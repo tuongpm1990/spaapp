@@ -14,6 +14,7 @@ import { HttpModule } from '@angular/http';
 
 import { DevExtremeModule } from 'devextreme-angular';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { DxResponsiveBoxModule } from 'devextreme-angular';
 
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {DxSelectBoxModule,
@@ -60,7 +61,8 @@ export const firebaseConfig = {
     DxDateBoxModule,
     DxButtonModule,
     DxValidatorModule,
-    DxValidationSummaryModule
+    DxValidationSummaryModule,
+    DxResponsiveBoxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

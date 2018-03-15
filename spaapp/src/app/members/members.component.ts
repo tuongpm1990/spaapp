@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, enableProdMode } from '@angular/core';
+
+
+if(!/localhost/.test(document.location.host)) {
+  enableProdMode();
+}
 
 @Component({
   selector: 'app-members',
@@ -6,7 +11,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./members.component.css']
 })
 export class MembersComponent implements OnInit {
-
+  screen(width) {
+    return ( width < 700 ) ? 'sm' : 'lg';
+  }
   constructor() { }
 
   ngOnInit() {

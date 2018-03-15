@@ -8,3 +8,6 @@
 .login-container .dx-field .btn-right {
   float: right;
 }
+.login-container .dx-fieldset-header {
+  text-align: center;
+}

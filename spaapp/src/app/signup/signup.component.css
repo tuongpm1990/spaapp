@@ -1,0 +1,9 @@
+.signup-container dx-button.btn-right {
+  float: right;
+}
+.signup-container.form-container{
+  top:35%;
+}
+.signup-container .dx-fieldset-header {
+  text-align: center;
+}

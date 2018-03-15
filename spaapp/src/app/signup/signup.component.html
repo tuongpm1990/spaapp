@@ -1,21 +1,8 @@
-<div class="form-container">
+<div class="form-container signup-container">
   <dx-button text="Login" (onClick)="btnBackLogin()" icon="fa fa-arrow-left"></dx-button>
 
-
-  <h2>Đăng ký tài khoản</h2>
-
-  <!--<span class="error" *ngIf="error" [@fallIn]='state'>{{ error }}</span>-->
-
-  <!--<form #formData='ngForm' (ngSubmit)="btnSignUp(formData)">-->
-
-    <!--<input type="text" placeholder="Email address.." (ngModel)="email" name="email" class="txt" required>-->
-    <!--<input type="password" placeholder="Password" (ngModel)="password" name="password" class="txt" required>-->
-
-
-    <!--<button type="submit" [disabled]="!formData.valid" class="basic-btn">Create my account</button>-->
-  <!--</form>-->
-
   <form action="your-action" (submit)="btnSignUp(email,password)">
+    <div class="dx-fieldset-header">SignUp</div>
     <div class="dx-field">
       <div class="dx-field-label">Email</div>
       <div class="dx-field-value">
@@ -51,7 +38,10 @@
           </dx-validator>
         </dx-text-box>
       </div>
+
     </div>
-    <dx-button text="Đăng ký" type="success" [useSubmitBehavior]="true"></dx-button>
+    <div class="dx-field">
+      <dx-button text="Đăng ký" class="btn-right" type="success" [useSubmitBehavior]="true"></dx-button>
+    </div>
   </form>
 </div>
