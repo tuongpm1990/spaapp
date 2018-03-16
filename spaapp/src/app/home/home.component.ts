@@ -20,50 +20,45 @@ export class HomeComponent implements OnInit {
     this.resourcesDataSource = service.getEmployees();
     this.dataService = service.getServiceData();
   }
-  static getCurrentTraining(index, employeeID) {
-    let currentTraining;
-    const  result = (index + employeeID) % 3;
-
-    switch (result) {
-      case 0: {
-        currentTraining = 'abs-background';
-        break;
-      }
-      case 1: {
-        currentTraining = 'step-background';
-        break;
-      }
-      case 2: {
-        currentTraining = 'fitball-background';
-        break;
-      }
-      default: {
-        currentTraining = '';
-        break;
-      }
-    }
-
-    return currentTraining;
-  }
+  // static getCurrentTraining(index, employeeID) {
+  //   let currentTraining;
+    // switch (result) {
+    //   case 0: {
+    //     currentTraining = 'abs-background';
+    //     break;
+    //   }
+    //   case 1: {
+    //     currentTraining = 'step-background';
+    //     break;
+    //   }
+    //   case 2: {
+    //     currentTraining = 'fitball-background';
+    //     break;
+    //   }
+    //   default: {
+    //     currentTraining = '';
+    //     break;
+    //   }
+    // }
+    // return currentTraining;
+  // }
   static isWeekEnd(date) {
     const day = date.getDay();
     return day === 0 || day === 6;
   }
 
   dataCellTemplate(cellData, index, container) {
-    const employeeID = cellData.groups.employeeID,
-      dataCellElement = container,
-      currentTraining = HomeComponent.getCurrentTraining(index, employeeID);
-
+    const employeeID = cellData.groups.employeeID, dataCellElement = container;
+      // currentTraining = HomeComponent.getCurrentTraining(index, employeeID);
     if (HomeComponent.isWeekEnd(cellData.startDate)) {
       dataCellElement.classList.add('employee-weekend-' + employeeID);
     }
-
     const element = document.createElement('div');
-    if (element.classList.length > 0) {
-      element.classList.add('day-cell', currentTraining, 'employee-' + employeeID);
+    // if (element.classList.length > 0) {
+      element.classList.add('day-cell', 'employee-' + employeeID);
       element.textContent = cellData.text;
-    }
+      // element.style.propertyName = 'background-color:rgba(86, 202, 133, 0.1)';
+    // }
     return element;
   }
   ngOnInit() {

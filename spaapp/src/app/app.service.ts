@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 export class Employee {
   text: string;
   id: number;
+  avatar: string;
   employeeName: string;
   employeeID: number;
   color: string;
@@ -44,6 +45,7 @@ const serviceData: ServiceData[] = [{
 const employees: Employee[] = [{
   id: 0,
   text: 'Phạm Văn Tú',
+  avatar: 'assets/images/default-avatar.png',
   employeeName: 'Phạm Văn Tú',
   employeeID: 0,
   color: '#56ca85',
@@ -52,6 +54,7 @@ const employees: Employee[] = [{
 }, {
   id: 1,
   text: 'Phạm Thị Hoa',
+  avatar: 'assets/images/default-avatar.png',
   employeeName: 'Phạm Thị Hoa',
   employeeID: 1,
   color: '#ff9747',

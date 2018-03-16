@@ -9,11 +9,10 @@
       [startDayHour]="8"
       [endDayHour]="18"
       [showAllDayPanel]="false"
-      [height]="500"
+      [height]="600"
       [groups]="['employeeID']"
       resourceCellTemplate="resourceCellTemplate"
       [dataCellTemplate]="dataCellTemplate">
-
       <dxi-resource
         fieldExpr="serviceDataID"
         [allowMultiple]="true"
@@ -24,12 +23,14 @@
         fieldExpr="employeeID"
         [allowMultiple]="false"
         [dataSource]="resourcesDataSource"
-
         label="Nhân viên">
       </dxi-resource>
       <div *dxTemplate="let employee of 'resourceCellTemplate'">
         <div class='name' [style.background]="employee.data.color">
           <h2>{{employee.data.employeeName}}</h2>
+        </div>
+        <div class='avatar'>
+          <img [src]="employee.data.avatar" />
         </div>
         <div class='info' [style.color]="employee.data.color">
           Age: {{employee.data.age}}
