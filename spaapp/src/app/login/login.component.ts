@@ -30,28 +30,28 @@ export class LoginComponent implements OnInit {
   // private oAuthLogin(provider) {
   //   return this.afAuth.auth.signInWithPopup(provider)
   //     .then((credential) => {
-  //       this.router.navigate(['/members']);
+  //       this.router.navigate(['/navbar2']);
   //     });
   // }
   loginFb() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()
     ).then((res) => {
-      this.router.navigate(['/members']);
+      this.router.navigate(['/navbar2']);
     }).catch((err) => {
       console.log(err);
     });
   }
-  loginGoogle() {
+    loginGoogle() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()
     ).then((res) => {
-      this.router.navigate(['/members']);
+      this.router.navigate(['/navbar2']);
     }).catch((err) => {
       console.log(err);
     });
   }
   loginEmail(email, password) {
     this.afAuth.auth.signInWithEmailAndPassword(email, password).then((res) => {
-      this.router.navigate(['/members']);
+      this.router.navigate(['/navbar2']);
     }).catch((err) => {
       notify({
         message: err,

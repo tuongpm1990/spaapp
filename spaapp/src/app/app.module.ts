@@ -7,7 +7,9 @@ import { AngularFireModule } from 'angularfire2';
 import { LoginComponent } from './login/login.component';
 import { EmailComponent } from './email/email.component';
 import { SignupComponent } from './signup/signup.component';
-import { MembersComponent } from './members/members.component';
+import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
+
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
@@ -24,12 +26,13 @@ import {DxSelectBoxModule,
   DxButtonModule,
   DxValidatorModule,
   DxValidationSummaryModule} from 'devextreme-angular';
-import notify from 'devextreme/ui/notify';
+
+
 const router: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'members', component: MembersComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'login-email', component: EmailComponent },
 ];
 // export const routers: ModuleWithProviders = RouterModule.forRoot(router);
@@ -44,7 +47,7 @@ export const firebaseConfig = {
   messagingSenderId: '819888191756'
 };
 @NgModule({
-  declarations: [AppComponent, LoginComponent, EmailComponent, SignupComponent, MembersComponent],
+  declarations: [AppComponent, LoginComponent, EmailComponent, SignupComponent, HomeComponent, NavbarComponent],
   imports: [
     BrowserModule,
     FormsModule,

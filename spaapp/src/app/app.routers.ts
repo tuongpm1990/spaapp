@@ -2,7 +2,7 @@
 // import { NgModule } from '@angular/core';
 // import { Routes, RouterModule } from '@angular/router';
 // import { LoginComponent } from './login/login.component';
-// import { MembersComponent } from './members/members.component';
+// import { MembersComponent } from './navbar2/navbar2.component';
 // import { SignupComponent } from './signup/signup.component';
 // import { EmailComponent } from './email/email.component';
 //
