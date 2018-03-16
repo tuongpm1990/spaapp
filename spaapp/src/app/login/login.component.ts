@@ -22,21 +22,11 @@ export class LoginComponent implements OnInit {
   constructor(public afAuth: AngularFireAuth, private router: Router) {
     this.showLoginEmail = false;
   }
-  // loginGoogle() {
-  //   const provider = new firebase.auth.GoogleAuthProvider();
-  //   return this.oAuthLogin(provider);
-  // }
-  //
-  // private oAuthLogin(provider) {
-  //   return this.afAuth.auth.signInWithPopup(provider)
-  //     .then((credential) => {
-  //       this.router.navigate(['/navbar2']);
-  //     });
-  // }
   loginFb() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()
     ).then((res) => {
-      this.router.navigate(['/navbar2']);
+      this.router.navigate(['/home']);
+      location.reload();
     }).catch((err) => {
       console.log(err);
     });
@@ -44,14 +34,15 @@ export class LoginComponent implements OnInit {
     loginGoogle() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()
     ).then((res) => {
-      this.router.navigate(['/navbar2']);
+      this.router.navigate(['/home']);
+      location.reload();
     }).catch((err) => {
       console.log(err);
     });
   }
   loginEmail(email, password) {
     this.afAuth.auth.signInWithEmailAndPassword(email, password).then((res) => {
-      this.router.navigate(['/navbar2']);
+      this.router.navigate(['/home']);
     }).catch((err) => {
       notify({
         message: err,

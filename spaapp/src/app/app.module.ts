@@ -11,14 +11,10 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 import { Routes, RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
 
+import { DxSchedulerModule, DxTemplateModule } from 'devextreme-angular';
 import { DevExtremeModule } from 'devextreme-angular';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { DxResponsiveBoxModule } from 'devextreme-angular';
-
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {DxSelectBoxModule,
   DxCheckBoxModule,
   DxTextBoxModule,
@@ -53,8 +49,6 @@ export const firebaseConfig = {
     FormsModule,
     RouterModule.forRoot(router),
     AngularFireModule.initializeApp(firebaseConfig),
-    HttpClientModule,
-    HttpModule,
     AngularFireAuthModule,
     DxButtonModule,
     DevExtremeModule,
@@ -65,7 +59,8 @@ export const firebaseConfig = {
     DxButtonModule,
     DxValidatorModule,
     DxValidationSummaryModule,
-    DxResponsiveBoxModule
+    DxSchedulerModule,
+    DxTemplateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

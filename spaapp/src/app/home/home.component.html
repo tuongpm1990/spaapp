@@ -1,38 +1,40 @@
 <app-navbar></app-navbar>
 <div class="container home">
   <div class="starter-template">
-    <dx-scheduler
-      [dataSource]="dataSource"
-      [views]="['month']"
+    <dx-scheduler [dataSource]="dataSource"
+      [views]="['day', 'week', 'month']"
       currentView="month"
       [currentDate]="currentDate"
       [firstDayOfWeek]="1"
       [startDayHour]="8"
       [endDayHour]="18"
       [showAllDayPanel]="false"
-      [height]="600"
+      [height]="500"
       [groups]="['employeeID']"
       resourceCellTemplate="resourceCellTemplate"
       [dataCellTemplate]="dataCellTemplate">
 
       <dxi-resource
+        fieldExpr="serviceDataID"
+        [allowMultiple]="true"
+        [dataSource]="dataService"
+        label="Dịch vụ">
+      </dxi-resource>
+      <dxi-resource
         fieldExpr="employeeID"
         [allowMultiple]="false"
         [dataSource]="resourcesDataSource"
-        label="Employee">
-      </dxi-resource>
 
+        label="Nhân viên">
+      </dxi-resource>
       <div *dxTemplate="let employee of 'resourceCellTemplate'">
-        <div class='name' [style.background]="employee.color">
-          <h2>{{employee.text}}</h2>
+        <div class='name' [style.background]="employee.data.color">
+          <h2>{{employee.data.employeeName}}</h2>
         </div>
-        <div class='avatar'>
-          <img [src]="employee.data.avatar" />
-        </div>
-        <div class='info' [style.color]="employee.color">
+        <div class='info' [style.color]="employee.data.color">
           Age: {{employee.data.age}}
           <br/>
-          <b>{{employee.data.discipline}}</b>
+          <b>{{employee.data.job}}</b>
         </div>
       </div>
     </dx-scheduler>
