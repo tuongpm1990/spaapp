@@ -1,64 +1,51 @@
 import { Component, OnInit } from '@angular/core';
 import DataSource from 'devextreme/data/data_source';
-import { Service, Employee, ServiceData } from '../app.service';
+import { Service, ServiceData } from '../app.service';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database-deprecated';
+import CustomStore from 'devextreme/data/custom_store';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [Service]
+  providers: [Service, AngularFireDatabase]
 })
 export class HomeComponent implements OnInit {
   dataSource: any;
   currentDate: Date = new Date();
-  resourcesDataSource: Employee[];
+  resourcesDataSource: any;
   dataService: ServiceData[];
-  constructor(service: Service) {
+  constructor(service: Service,  public db: AngularFireDatabase) {
     this.dataSource = new DataSource({
       store: service.getCustomer()
     });
-    this.resourcesDataSource = service.getEmployees();
     this.dataService = service.getServiceData();
+    // this.resourcesDataSource = new DataSource ({
+    //   store: new CustomStore ({
+    //     load: (options) => this.getDataEmployees(options)
+    //   })
+    // });
+    db.list('/employees').subscribe(courses => {
+      this.resourcesDataSource = courses;
+      console.log(this.resourcesDataSource);
+    });
   }
-  // static getCurrentTraining(index, employeeID) {
-  //   let currentTraining;
-    // switch (result) {
-    //   case 0: {
-    //     currentTraining = 'abs-background';
-    //     break;
-    //   }
-    //   case 1: {
-    //     currentTraining = 'step-background';
-    //     break;
-    //   }
-    //   case 2: {
-    //     currentTraining = 'fitball-background';
-    //     break;
-    //   }
-    //   default: {
-    //     currentTraining = '';
-    //     break;
-    //   }
-    // }
-    // return currentTraining;
-  // }
   static isWeekEnd(date) {
     const day = date.getDay();
     return day === 0 || day === 6;
   }
-
+  onAppointmentAdded (appointment) {
+    console.log(appointment);
+    // Handler of the "appointmentAdding" event
+  }
   dataCellTemplate(cellData, index, container) {
     const employeeID = cellData.groups.employeeID, dataCellElement = container;
-      // currentTraining = HomeComponent.getCurrentTraining(index, employeeID);
     if (HomeComponent.isWeekEnd(cellData.startDate)) {
       dataCellElement.classList.add('employee-weekend-' + employeeID);
     }
     const element = document.createElement('div');
-    // if (element.classList.length > 0) {
       element.classList.add('day-cell', 'employee-' + employeeID);
       element.textContent = cellData.text;
-      // element.style.propertyName = 'background-color:rgba(86, 202, 133, 0.1)';
-    // }
     return element;
   }
   ngOnInit() {
