@@ -1,46 +1,54 @@
 import { Component, OnInit } from '@angular/core';
 import DataSource from 'devextreme/data/data_source';
-import { Service, ServiceData } from '../app.service';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database-deprecated';
+import * as moment from 'moment';
+import { ScheduleService } from '../services/schedule.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [Service, AngularFireDatabase]
+  providers: [ AngularFireDatabase, ScheduleService]
 })
 export class HomeComponent implements OnInit {
-  dataSource: any;
+  dataSource: DataSource;
   currentDate: Date = new Date();
   resourcesDataSource: any;
   dataService: any[];
-  books: FirebaseListObservable<any>;
-  constructor(service: Service, public db: AngularFireDatabase) {
-    this.books = db.list('/customers');
-    this.books.subscribe(customer => {
-        customer.filter({})
-        this.dataSource = new DataSource({
-          store: customer
-        });
-      console.log(customer);
-    });
-    db.list('/services').subscribe(dataService => {
-      this.dataService = dataService;
-    });
+  books: FirebaseListObservable<any[]>;
+  constructor(public db: AngularFireDatabase, private serviceSchedule: ScheduleService) {
+    // this.books = db.list('/customers');
+    // db.list('/services').subscribe(dataService => {
+    //   this.dataService = dataService;
+    // });
+    // this.books.subscribe(customer => {
+    //     customer.forEach(obj => {
+    //       obj.startDate = moment.unix(obj.startDate);
+    //       obj.endDate = moment.unix(obj.endDate);
+    //     });
+    //     this.dataSource = new DataSource({
+    //       store: customer
+    //     });
+    //   console.log(customer);
+    // });
+
     // this.resourcesDataSource = new DataSource ({
     //   store: new CustomStore ({
     //     load: (options) => this.getDataEmployees(options)
     //   })
     // });
-    db.list('/employees').subscribe(courses => {
-      this.resourcesDataSource = courses;
-    });
+    // db.list('/employees').subscribe(courses => {
+    //   this.resourcesDataSource = courses;
+    // });
   }
   static isWeekEnd(date) {
     const day = date.getDay();
     return day === 0 || day === 6;
   }
   onAppointmentAdded (appointment) {
-    this.books.push(appointment.appointmentData);
+    const objPost = appointment.appointmentData;
+    objPost.startDate = moment(objPost.startDate).unix();
+    objPost.endDate = moment(objPost.endDate).unix();
+    this.books.push(objPost);
     // Handler of the "appointmentAdding" event
   }
   dataCellTemplate(cellData, index, container) {
@@ -48,12 +56,32 @@ export class HomeComponent implements OnInit {
     if (HomeComponent.isWeekEnd(cellData.startDate)) {
       dataCellElement.classList.add('employee-weekend-' + employeeID);
     }
-    const element = document.createElement('div');
-      element.classList.add('day-cell', 'employee-' + employeeID);
-      element.textContent = cellData.text;
-    return element;
   }
-  ngOnInit() {
+  getCustomers(): any {
+    this.serviceSchedule.getCustomers().subscribe( customer => {
+      customer.forEach(obj => {
+        obj.startDate = moment.unix(obj.startDate);
+        obj.endDate = moment.unix(obj.endDate);
+      });
+      console.log(customer)
+        return customer;
+      });
   }
 
+  ngOnInit() {
+    // this.books = this.serviceSchedule.getCustomers();
+    // this.books.subscribe( customer => {
+    //       customer.forEach(obj => {
+    //         obj.startDate = moment.unix(obj.startDate);
+    //         obj.endDate = moment.unix(obj.endDate);
+    //       });
+    //       this.dataSource = new DataSource({
+    //         store: customer
+    //       });
+    //     console.log(this.dataSource);
+    // });
+    // this.serviceSchedule.getEmployees().subscribe( employees => {
+    //   this.resourcesDataSource = employees;
+    // });
+  }
 }

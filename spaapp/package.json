@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^5.2.9",
     "@angular/platform-browser-dynamic": "^5.2.9",
     "@angular/router": "^5.2.9",
+    "angular2-moment": "^1.8.0",
     "angularfire2": "^5.0.0-rc.5-next",
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
@@ -28,6 +29,7 @@
     "devextreme-angular": "^17.2.6",
     "firebase": "^4.11.0",
     "font-awesome": "^4.7.0",
+    "moment": "^2.21.0",
     "rxjs": "^5.5.7",
     "zone.js": "^0.8.19"
   },

@@ -16,6 +16,7 @@ import { Routes, RouterModule} from '@angular/router';
 import { DxSchedulerModule, DxTemplateModule } from 'devextreme-angular';
 import { DevExtremeModule } from 'devextreme-angular';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { ScheduleService } from './services/schedule.service';
 import {DxSelectBoxModule,
   DxCheckBoxModule,
   DxTextBoxModule,
@@ -63,7 +64,7 @@ export const firebaseConfig = {
     DxTemplateModule,
     // routers
   ],
-  providers: [AuthguardGuard],
+  providers: [AuthguardGuard, ScheduleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

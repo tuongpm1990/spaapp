@@ -9,7 +9,7 @@
       currentView="month"
       [currentDate]="currentDate"
       [firstDayOfWeek]="1"
-      [startDayHour]="8"
+      [startDayHour]="0"
       [endDayHour]="24"
       [showAllDayPanel]="false"
       [height]="600"
@@ -23,7 +23,7 @@
       </dxi-resource>
       <dxi-resource
         fieldExpr="serviceID"
-        [allowMultiple]="false"
+        [allowMultiple]="true"
         [dataSource]="dataService"
         label="Service">
       </dxi-resource>
