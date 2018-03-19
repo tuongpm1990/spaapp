@@ -11,7 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
-
+// import { AuthGuard } from './auth.guard';
+// import { routers } from './app.routers';
 import { DxSchedulerModule, DxTemplateModule } from 'devextreme-angular';
 import { DevExtremeModule } from 'devextreme-angular';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -22,7 +23,6 @@ import {DxSelectBoxModule,
   DxButtonModule,
   DxValidatorModule,
   DxValidationSummaryModule} from 'devextreme-angular';
-
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {AuthguardGuard} from './authguard.guard';
 const router: Routes = [
@@ -50,7 +50,6 @@ export const firebaseConfig = {
     RouterModule.forRoot(router),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
-    AngularFireDatabaseModule,
     DxButtonModule,
     DevExtremeModule,
     DxSelectBoxModule,

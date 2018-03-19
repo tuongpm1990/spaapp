@@ -12,12 +12,20 @@ export class HomeComponent implements OnInit {
   dataSource: any;
   currentDate: Date = new Date();
   resourcesDataSource: any;
-  dataService: ServiceData[];
-  constructor(service: Service,  public db: AngularFireDatabase) {
-    this.dataSource = new DataSource({
-      store: service.getCustomer()
+  dataService: any[];
+  books: FirebaseListObservable<any>;
+  constructor(service: Service, public db: AngularFireDatabase) {
+    this.books = db.list('/customers');
+    this.books.subscribe(customer => {
+        customer.filter({})
+        this.dataSource = new DataSource({
+          store: customer
+        });
+      console.log(customer);
     });
-    this.dataService = service.getServiceData();
+    db.list('/services').subscribe(dataService => {
+      this.dataService = dataService;
+    });
     // this.resourcesDataSource = new DataSource ({
     //   store: new CustomStore ({
     //     load: (options) => this.getDataEmployees(options)
@@ -25,7 +33,6 @@ export class HomeComponent implements OnInit {
     // });
     db.list('/employees').subscribe(courses => {
       this.resourcesDataSource = courses;
-      console.log(this.resourcesDataSource);
     });
   }
   static isWeekEnd(date) {
@@ -33,7 +40,7 @@ export class HomeComponent implements OnInit {
     return day === 0 || day === 6;
   }
   onAppointmentAdded (appointment) {
-    console.log(appointment);
+    this.books.push(appointment.appointmentData);
     // Handler of the "appointmentAdding" event
   }
   dataCellTemplate(cellData, index, container) {

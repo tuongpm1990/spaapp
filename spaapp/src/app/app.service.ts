@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+
 // import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database-deprecated';
+
 export class Employee {
   text: string;
   id: number;
@@ -21,13 +23,11 @@ export class Customer {
   address: string;
   services: string;
 }
-
 export class ServiceData {
   text: string;
   serviceDataID: number;
   id: number;
 }
-
 const serviceData: ServiceData[] = [{
   id: 0,
   text: 'Làm móng tay',
@@ -87,7 +87,6 @@ export class Service {
   getEmployees() {
     return employees;
   }
-
   getCustomer() {
     return customer;
   }
