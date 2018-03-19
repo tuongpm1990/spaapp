@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-
-// export class Employee {
-//   text: string;
-//   id: number;
-//   avatar: string;
-//   employeeName: string;
-//   employeeID: number;
-//   color: string;
-//   age: number;
-//   job: string;
-// }
+// import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database-deprecated';
+export class Employee {
+  text: string;
+  id: number;
+  avatar: string;
+  employeeName: string;
+  employeeID: number;
+  color: string;
+  age: number;
+  job: string;
+}
 
 export class Customer {
   text: string;
@@ -42,25 +42,25 @@ const serviceData: ServiceData[] = [{
   serviceDataID: 2
 }];
 
-// const employees: Employee[] = [{
-//   id: 0,
-//   text: 'Phạm Văn Tú',
-//   avatar: 'assets/images/default-avatar.png',
-//   employeeName: 'Phạm Văn Tú',
-//   employeeID: 0,
-//   color: '#56ca85',
-//   age: 28,
-//   job: 'nail, spa'
-// }, {
-//   id: 1,
-//   text: 'Phạm Thị Hoa',
-//   avatar: 'assets/images/default-avatar.png',
-//   employeeName: 'Phạm Thị Hoa',
-//   employeeID: 1,
-//   color: '#ff9747',
-//   age: 20,
-//   job: 'spa'
-// }];
+const employees: Employee[] = [{
+  id: 0,
+  text: 'Phạm Văn Tú',
+  avatar: 'assets/images/default-avatar.png',
+  employeeName: 'Phạm Văn Tú',
+  employeeID: 0,
+  color: '#56ca85',
+  age: 28,
+  job: 'nail, spa'
+}, {
+  id: 1,
+  text: 'Phạm Thị Hoa',
+  avatar: 'assets/images/default-avatar.png',
+  employeeName: 'Phạm Thị Hoa',
+  employeeID: 1,
+  color: '#ff9747',
+  age: 20,
+  job: 'spa'
+}];
 
 const customer: Customer[] = [{
   text: 'Nguyễn Trịnh Tùng',
@@ -84,9 +84,10 @@ const customer: Customer[] = [{
 
 @Injectable()
 export class Service {
-  // getEmployees() {
-  //   return employees;
-  // }
+  getEmployees() {
+    return employees;
+  }
+
   getCustomer() {
     return customer;
   }

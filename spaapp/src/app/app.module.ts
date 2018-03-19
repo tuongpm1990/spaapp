@@ -24,15 +24,15 @@ import {DxSelectBoxModule,
   DxValidationSummaryModule} from 'devextreme-angular';
 
 import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {AuthguardGuard} from './authguard.guard';
 const router: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'home', component: HomeComponent},
+  { path: 'home', component: HomeComponent, canActivate: [ AuthguardGuard ]},
   { path: 'login-email', component: EmailComponent },
 ];
-export const routers: ModuleWithProviders = RouterModule.forRoot(router);
-
+// export const routers: ModuleWithProviders = RouterModule.forRoot(router);
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBpj0-6i9Pd-NKo0Ij6ymZ_LvBmsR_Qgr8',
@@ -62,9 +62,9 @@ export const firebaseConfig = {
     DxValidationSummaryModule,
     DxSchedulerModule,
     DxTemplateModule,
-    routers
+    // routers
   ],
-  providers: [],
+  providers: [AuthguardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

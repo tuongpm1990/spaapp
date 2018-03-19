@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import DataSource from 'devextreme/data/data_source';
 import { Service, ServiceData } from '../app.service';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database-deprecated';
-import CustomStore from 'devextreme/data/custom_store';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

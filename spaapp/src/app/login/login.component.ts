@@ -52,9 +52,6 @@ export class LoginComponent implements OnInit {
   btnLogin() {
     this.showLoginEmail = true;
   }
-  screen(width) {
-    return ( width < 700 ) ? 'sm' : 'lg';
-  }
   ngOnInit() {
   }
 
