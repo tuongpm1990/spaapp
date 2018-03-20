@@ -3,7 +3,7 @@
   <div class="starter-template">
     <dx-scheduler
       (onAppointmentAdding)="onAppointmentAdded ($event)"
-      [dataSource]="dataSource"
+      [dataSource]="dataCustomers"
       [remoteFiltering] ="true"
       [views]="['day', 'week', 'month']"
       currentView="month"
@@ -18,13 +18,13 @@
       <dxi-resource
         fieldExpr="employeeID"
         [allowMultiple]="false"
-        [dataSource]="resourcesDataSource"
+        [dataSource]="dataEmployees"
         label="Employee">
       </dxi-resource>
       <dxi-resource
         fieldExpr="serviceID"
         [allowMultiple]="true"
-        [dataSource]="dataService"
+        [dataSource]="dataServices"
         label="Service">
       </dxi-resource>
       <div *dxTemplate="let employee of 'resourceCellTemplate'">

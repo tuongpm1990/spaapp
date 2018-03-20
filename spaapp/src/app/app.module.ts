@@ -11,8 +11,6 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
-// import { AuthGuard } from './auth.guard';
-// import { routers } from './app.routers';
 import { DxSchedulerModule, DxTemplateModule } from 'devextreme-angular';
 import { DevExtremeModule } from 'devextreme-angular';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -24,13 +22,12 @@ import {DxSelectBoxModule,
   DxButtonModule,
   DxValidatorModule,
   DxValidationSummaryModule} from 'devextreme-angular';
-import {AngularFireDatabaseModule} from 'angularfire2/database';
-import {AuthguardGuard} from './authguard.guard';
+// import {AuthguardGuard} from './authguard.guard';
 const router: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'home', component: HomeComponent, canActivate: [ AuthguardGuard ]},
+  { path: 'home', component: HomeComponent},
   { path: 'login-email', component: EmailComponent },
 ];
 // export const routers: ModuleWithProviders = RouterModule.forRoot(router);
@@ -64,7 +61,7 @@ export const firebaseConfig = {
     DxTemplateModule,
     // routers
   ],
-  providers: [AuthguardGuard, ScheduleService],
+  providers: [ScheduleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
