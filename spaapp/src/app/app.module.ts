@@ -22,7 +22,7 @@ import {DxSelectBoxModule,
   DxButtonModule,
   DxValidatorModule,
   DxValidationSummaryModule} from 'devextreme-angular';
-// import {AuthguardGuard} from './authguard.guard';
+import {AuthguardGuard} from './authguard.guard';
 const router: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -61,7 +61,7 @@ export const firebaseConfig = {
     DxTemplateModule,
     // routers
   ],
-  providers: [ScheduleService],
+  providers: [ScheduleService, AuthguardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
