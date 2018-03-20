@@ -2,11 +2,13 @@
 <div class="container home">
   <div class="starter-template">
     <dx-scheduler
-      (onAppointmentAdding)="onAppointmentAdded ($event)"
+      (onAppointmentAdded)="onAppointmentAdded ($event)"
+      (onAppointmentDeleted)="onAppointmentDeleted ($event)"
+      (onAppointmentUpdating)="onAppointmentUpdated ($event)"
       [dataSource]="dataCustomers"
       [remoteFiltering] ="true"
       [views]="['day', 'week', 'month']"
-      currentView="month"
+      currentView="day"
       [currentDate]="currentDate"
       [firstDayOfWeek]="1"
       [startDayHour]="0"
@@ -15,6 +17,13 @@
       [height]="600"
       [groups]="['employeeID']"
       resourceCellTemplate="resourceCellTemplate">
+      <dxo-editing #editingOptions
+                   [allowAdding]="true"
+                   [allowUpdating]="true"
+                   [allowDeleting]="true"
+                   [allowResizing]="true"
+                   [allowDragging]="true"
+      ></dxo-editing>
       <dxi-resource
         fieldExpr="employeeID"
         [allowMultiple]="false"

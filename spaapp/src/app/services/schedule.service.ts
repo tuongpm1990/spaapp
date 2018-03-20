@@ -4,9 +4,6 @@ import DataSource from 'devextreme/data/data_source';
 import * as moment from 'moment';
 @Injectable()
 export class ScheduleService {
-  Employees: any;
-  DataService: any[];
-
   constructor(public db: AngularFireDatabase) {
   }
 
@@ -22,6 +19,7 @@ export class ScheduleService {
         const dataSource = new DataSource ({
           store: customers
         });
+        console.log(dataSource);
         return resolve(dataSource);
       });
     });
@@ -50,5 +48,16 @@ export class ScheduleService {
     objPost.startDate = moment(objPost.startDate).unix();
     objPost.endDate = moment(objPost.endDate).unix();
     this.db.list('/customers').push(objPost);
+  }
+
+  deleteOppointment(appointmentData) {
+    console.log(appointmentData.$key)
+    this.db.list('/customers').remove(appointmentData.$key);
+  }
+  updateOppointment(newData, oldData) {
+    const objPost = newData;
+    objPost.startDate = moment(objPost.startDate).unix();
+    objPost.endDate = moment(objPost.endDate).unix();
+    this.db.list('/customers').update(oldData.$key, objPost);
   }
 }

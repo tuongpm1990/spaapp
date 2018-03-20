@@ -13,7 +13,6 @@ export class HomeComponent implements OnInit {
   currentDate: Date = new Date();
   dataEmployees: any;
   dataServices: any;
-  books: FirebaseListObservable<any[]>;
   constructor(private serviceSchedule: ScheduleService) {}
   static isWeekEnd(date) {
     const day = date.getDay();
@@ -22,14 +21,28 @@ export class HomeComponent implements OnInit {
   onAppointmentAdded (appointment) {
     this.serviceSchedule.createOppointment(appointment.appointmentData);
     // Handler of the "appointmentAdding" event
+    this.serviceSchedule.getOppointment().then((customers) => {
+      this.dataCustomers = customers;
+      console.log(this.dataCustomers);
+    });
   }
-  dataCellTemplate(cellData, index, container) {
-    const employeeID = cellData.groups.employeeID, dataCellElement = container;
-    if (HomeComponent.isWeekEnd(cellData.startDate)) {
-      dataCellElement.classList.add('employee-weekend-' + employeeID);
-    }
+  onAppointmentDeleted (appointment) {
+    this.serviceSchedule.deleteOppointment(appointment.appointmentData);
+    // Handler of the "appointmentAdding" event
+    this.serviceSchedule.getOppointment().then((customers) => {
+      this.dataCustomers = customers;
+      console.log(this.dataCustomers);
+    });
   }
-
+  onAppointmentUpdated (appointment) {
+    console.log(appointment);
+    this.serviceSchedule.updateOppointment(appointment.newData, appointment.oldData);
+    // Handler of the "appointmentAdding" event
+    this.serviceSchedule.getOppointment().then((customers) => {
+      this.dataCustomers = customers;
+      console.log(this.dataCustomers);
+    });
+  }
   ngOnInit() {
     this.serviceSchedule.getEmployees().then((employees) => {
       this.dataEmployees = employees;
