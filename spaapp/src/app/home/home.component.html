@@ -1,54 +1,5 @@
 <app-navbar></app-navbar>
+<app-schedule></app-schedule>
 <div class="container home">
-  <div class="starter-template">
-    <dx-scheduler
-      (onAppointmentAdded)="onAppointmentAdded ($event)"
-      (onAppointmentDeleted)="onAppointmentDeleted ($event)"
-      (onAppointmentUpdating)="onAppointmentUpdated ($event)"
-      [dataSource]="dataCustomers"
-      [remoteFiltering] ="true"
-      [views]="['day', 'week', 'month']"
-      currentView="day"
-      [currentDate]="currentDate"
-      [firstDayOfWeek]="1"
-      [startDayHour]="0"
-      [endDayHour]="24"
-      [showAllDayPanel]="false"
-      [height]="600"
-      [groups]="['employeeID']"
-      resourceCellTemplate="resourceCellTemplate">
-      <dxo-editing #editingOptions
-                   [allowAdding]="true"
-                   [allowUpdating]="true"
-                   [allowDeleting]="true"
-                   [allowResizing]="true"
-                   [allowDragging]="true"
-      ></dxo-editing>
-      <dxi-resource
-        fieldExpr="employeeID"
-        [allowMultiple]="false"
-        [dataSource]="dataEmployees"
-        label="Employee">
-      </dxi-resource>
-      <dxi-resource
-        fieldExpr="serviceID"
-        [allowMultiple]="true"
-        [dataSource]="dataServices"
-        label="Service">
-      </dxi-resource>
-      <div *dxTemplate="let employee of 'resourceCellTemplate'">
-        <div class='name' [style.background]="employee.color">
-          <h2>{{employee.text}}</h2>
-        </div>
-        <div class='avatar'>
-          <img [src]="employee.data.avatar" />
-        </div>
-        <div class='info' [style.color]="employee.color">
-          Age: {{employee.data.age}}
-          <br/>
-          <b>{{employee.data.job}}</b>
-        </div>
-      </div>
-    </dx-scheduler>
-  </div>
+
 </div>

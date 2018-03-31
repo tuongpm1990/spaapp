@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database-deprecated';
+import { AngularFireDatabase} from 'angularfire2/database-deprecated';
 import DataSource from 'devextreme/data/data_source';
 import * as moment from 'moment';
+import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class ScheduleService {
   constructor(public db: AngularFireDatabase) {
   }
 
-  getOppointment(query = {}) {
+  // getOppointment(query = {}): Observable<any> {
+  //   return this.db.list('/categories').valueChanges();
+  // }
+  async getOppointment(query = {}) {
     return new Promise ((resolve, reject) => {
       this.db.list('/customers', {
         query: query
@@ -16,11 +20,11 @@ export class ScheduleService {
           obj.startDate = moment.unix(obj.startDate);
           obj.endDate = moment.unix(obj.endDate);
         });
-        const dataSource = new DataSource ({
-          store: customers
-        });
-        console.log(dataSource);
-        return resolve(dataSource);
+        // const dataSource = new DataSource ({
+        //   store: customers
+        // });
+        // console.log(dataSource);
+        return resolve(customers);
       });
     });
   }
@@ -51,7 +55,6 @@ export class ScheduleService {
   }
 
   deleteOppointment(appointmentData) {
-    console.log(appointmentData.$key)
     this.db.list('/customers').remove(appointmentData.$key);
   }
   updateOppointment(newData, oldData) {

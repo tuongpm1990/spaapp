@@ -23,12 +23,15 @@ import {DxSelectBoxModule,
   DxValidatorModule,
   DxValidationSummaryModule} from 'devextreme-angular';
 import {AuthguardGuard} from './authguard.guard';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ScheduleComponent } from './schedule/schedule.component';
 const router: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'home', component: HomeComponent},
   { path: 'login-email', component: EmailComponent },
+  { path: 'dashboard', component: DashboardComponent },
 ];
 // export const routers: ModuleWithProviders = RouterModule.forRoot(router);
 
@@ -41,7 +44,7 @@ export const firebaseConfig = {
   messagingSenderId: '819888191756'
 };
 @NgModule({
-  declarations: [AppComponent, LoginComponent, EmailComponent, SignupComponent, HomeComponent, NavbarComponent],
+  declarations: [AppComponent, LoginComponent, EmailComponent, SignupComponent, HomeComponent, NavbarComponent, DashboardComponent, ScheduleComponent],
   imports: [
     BrowserModule,
     FormsModule,
